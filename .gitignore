@@ -68,3 +68,6 @@ node_modules/
 jlcparts.sqlite3
 
 .venv
+temp/
+
+.DS_Store
