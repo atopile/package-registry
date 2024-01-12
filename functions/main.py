@@ -6,7 +6,9 @@ import google.cloud.firestore
 # The Firebase Admin SDK to access Cloud Firestore.
 from firebase_admin import firestore, initialize_app
 from firebase_functions import firestore_fn, https_fn
+from pint import UnitRegistry
 
+ureg = UnitRegistry() # If you have custom unit definitions
 app = initialize_app()
 
 @https_fn.on_request()
@@ -21,7 +23,7 @@ def get_component(req: https_fn.Request) -> https_fn.Response:
         return https_fn.Response("No JSON body provided", status=400)
 
     # Get the component type
-    component_type = req_json.get("type")
+    component_type = req_json.get("mpn")
     if not component_type:
         return https_fn.Response("No component type provided", status=400)
 
@@ -29,7 +31,7 @@ def get_component(req: https_fn.Request) -> https_fn.Response:
         return get_resistor_or_capacitor(req_json, firestore_client)
     elif component_type == "Capacitor":
         return get_resistor_or_capacitor(req_json, firestore_client)
-    elif component_type == "mosfet":
+    elif component_type == "Mosfet":
         return get_mosfet(req_json, firestore_client)
 
     else:
@@ -37,14 +39,24 @@ def get_component(req: https_fn.Request) -> https_fn.Response:
 
 def get_resistor_or_capacitor(req_json, firestore_client):
     try:
-        # Get the component requirements
         component_type = req_json.get("type")
         if not component_type:
             raise ValueError("Component type is required (Resistor or Capacitor).")
 
-        min_value = req_json.get("min_value")
-        max_value = req_json.get("max_value")
-        package = req_json.get("package", "").lstrip('C').lstrip('R')  # Strip leading 'C'/'R' if package is specified
+        value_json = req_json.get("value")
+        if value_json:
+            value_data = json.loads(value_json)
+            min_value = ureg.Quantity(value_data.get("min_val"), value_data.get("unit"))
+            max_value = ureg.Quantity(value_data.get("max_val"), value_data.get("unit"))
+
+            # Convert to a standard unit if necessary, e.g., ohms
+            min_value = min_value.to(ureg.ohm).magnitude
+            max_value = max_value.to(ureg.ohm).magnitude
+        else:
+            min_value = None
+            max_value = None
+
+        package = req_json.get("package", "").lstrip('C').lstrip('R')
 
         # Query and filter
         query = firestore_client.collection("components").where("type", "==", component_type)
