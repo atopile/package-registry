@@ -9,7 +9,7 @@ from firebase_functions import firestore_fn, https_fn
 from pint import UnitRegistry
 
 ureg = UnitRegistry() # If you have custom unit definitions
-app = initialize_app()
+
 
 @https_fn.on_request()
 def get_component(req: https_fn.Request) -> https_fn.Response:
