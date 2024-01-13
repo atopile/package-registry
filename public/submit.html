@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Submission</title>
+    <link rel="stylesheet" href="submit.css">
+    <script src="submit.js" defer></script>
+</head>
+<body>
+
+
+<form id="myForm">
+    <h1>Add package for atopile</h1>
+    <!-- Name field -->
+    <input type="text" name="name" placeholder="Package Name" required>
+    <!-- Repo URL field -->
+    <input type="url" name="repo_url" placeholder="Repository URL" required>
+    <button type="submit">Submit</button>
+</form>
+
+<div id="loading" style="display:none;">Loading...</div>
+<div id="success" style="display:none;">Success!</div>
+
+</body>
+</html>
