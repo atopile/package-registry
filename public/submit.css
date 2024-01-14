@@ -33,7 +33,7 @@ body {
     color: white;
     border-radius: 4px;
     cursor: pointer;
-    align-self: center;
+    margin: 0 10px;
 }
 
 #myForm button:hover {
