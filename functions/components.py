@@ -44,7 +44,7 @@ def get_component(request, firestore_client=firestore_client):
         best_component = select_best_component(components)
 
         return https_fn.Response(
-            json.dumps({"Best Component": best_component}),
+            json.dumps({"bestComponent": best_component}),
             status=200,
             content_type='application/json'
         )
