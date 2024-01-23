@@ -23,7 +23,11 @@ https://csiandal.medium.com/firebase-function-error-response-is-missing-data-fie
 
 #### CORS
 
-This fixes it right up
+There are two ways I've figured out how to get around CORS for the sake of development.
+
+1. `open -n /Applications/Google\ Chrome.app --args --user-data-dir="/var/tmp/chrome-dev-disabled-security" --disable-web-security --disable-site-isolation-trials` and use this browser window
+
+2. Allow a bunch of requests via unsafe headers (not for production)
 
 ```python
 @https_fn.on_request(

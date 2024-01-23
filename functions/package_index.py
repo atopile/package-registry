@@ -30,7 +30,7 @@ def get_package(req: https_fn.Request) -> https_fn.Response:
         )
 
     # Send back a message that we've successfully written the message
-    return doc.to_dict()
+    return {"data": doc.to_dict()}
 
 
 @https_fn.on_request()
@@ -41,7 +41,7 @@ def list_packages(req: https_fn.Request) -> https_fn.Response:
     """
     db: google.cloud.firestore.Client = firestore.client()
     docs = db.collection("packages").stream()
-    return [doc.to_dict() for doc in docs]
+    return {"data": [doc.to_dict() for doc in docs]}
 
 
 @https_fn.on_request()
@@ -99,4 +99,4 @@ def add_package(req: https_fn.Request) -> https_fn.Response:
     )
 
     # Send back a message that we've successfully written the message
-    return https_fn.Response("Package added")
+    return https_fn.Response()
