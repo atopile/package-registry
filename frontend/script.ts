@@ -5,6 +5,7 @@ import {
     getDatabase
 } from 'firebase/database';
 import { connectFunctionsEmulator, getFunctions, httpsCallable } from 'firebase/functions';
+import { parse as parseMarkdown } from "marked";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -37,20 +38,22 @@ if (window.location.hostname === 'localhost') {
 
 document.addEventListener('DOMContentLoaded', async function () {
     const container = document.getElementById('packagesList') as HTMLDivElement;
-    const packageAPI = httpsCallable(functions, 'package');
+    const packageAPI = httpsCallable(functions, 'list_packages');
 
-    packageAPI({"test": "empty"}).then(function (result) {
+    packageAPI().then(function (result) {
         // Read result of the Cloud Function.
         const packages = result.data as [{ name: string, description: string, repo_url: string }];
 
         packages.forEach(pkg => {
-            const card = document.createElement('div');
-            card.className = 'card';
+            const card = document.createElement('li');
+            card.className = 'package-card';
 
             card.innerHTML = `
-                <a href="${pkg.repo_url}" target="_blank"><h2>${pkg.name}</h2></a>
-                <p><code>ato install ${pkg.name}</code></p>
-                <p>${pkg.description}</p>
+                <div class="package-card-header">
+                    <a href="${pkg.repo_url}" target="_blank"><h2>${pkg.name}</h2></a>
+                    <pre><code>ato install ${pkg.name}</code></pre>
+                </div>
+                <p class="readme">${parseMarkdown(pkg.description)}</p>
             `;
 
             container.appendChild(card);
@@ -60,46 +63,38 @@ document.addEventListener('DOMContentLoaded', async function () {
     });
 });
 
-// document.addEventListener('DOMContentLoaded', function () {
-//     const form = document.getElementById('submitModuleForm');
-//     const submitButton = form.querySelector('button[type="submit"]');
-//     const loadingIcon = document.getElementById('loading');
-//     const successIcon = document.getElementById('success');
+document.addEventListener('DOMContentLoaded', async function () {
+    const form = document.getElementById('submitModuleForm');
+    const submitButton = form.querySelector('button[type="submit"]');
+    const loadingIcon = document.getElementById('loading');
+    const successIcon = document.getElementById('success');
 
-//     form.onsubmit = async function (e) {
-//         e.preventDefault();
+    form.onsubmit = async function (e) {
+        e.preventDefault();
 
-//         // Hide submit button and show loading icon
-//         submitButton.style.display = 'none';
-//         loadingIcon.style.display = 'block';
+        // Hide submit button and show loading icon
+        // submitButton.style.display = 'none';
+        // loadingIcon.style.display = 'block';
 
-//         const formData = new FormData(form);
-//         const data = {};
-//         formData.forEach((value, key) => (data[key] = value));
+        const formData = new FormData(form);
+        const data = {};
+        formData.forEach((value, key) => (data[key] = value));
 
-//         try {
-//             const response = await fetch('http://127.0.0.1:5001/atopile/us-central1/package', {
-//                 method: 'POST',
-//                 headers: {
-//                     'Content-Type': 'application/json',
-//                 },
-//                 body: JSON.stringify(data),
-//             });
+        const packageAPI = httpsCallable(functions, 'add_package');
+        console.log(data);
 
-//             if (response.ok) {
-//                 // Hide loading icon and show success icon
-//                 loadingIcon.style.display = 'none';
-//                 successIcon.style.display = 'block';
-//             } else {
-//                 // Handle non-successful responses
-//                 alert('Submission failed!');
-//             }
-//         } catch (error) {
-//             // Handle network errors
-//             alert('Network error!');
-//         } finally {
-//             // Hide loading icon
-//             loadingIcon.style.display = 'none';
-//         }
-//     };
-// });
+        packageAPI({name: data['name'], repo_url: data['repo_url']}).then(function (result) {
+            // loadingIcon.style.display = 'none';
+            // successIcon.style.display = 'block';
+            {}
+        }).catch(function (error) {
+            alert('Network error!');
+            console.error('There was an error when calling the Cloud Function', error, error.stack);
+        }).finally(function () {
+            // Hide loading icon
+            // loadingIcon.style.display = 'none';
+            // NOOP
+            {}
+        });
+    }
+});
