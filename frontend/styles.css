@@ -1,0 +1,65 @@
+ul {
+    list-style: none; /* Removes default bullet points */
+    padding: 0; /* Removes default padding */
+}
+
+.package-card {
+    padding: 10px; /* Optional: Adds some spacing */
+    border-bottom: 3px solid #ff6f00; /* Adds a bottom border */
+}
+
+.package-card:first-of-type {
+    border-top: 3px solid #ff6f00; /* Adds a top border to the first element */
+}
+
+.package-card:hover {
+    background-color: #eee; /* Optional: Adds a grey background color on hover */
+}
+
+.package-card h1 {
+    font-size: 1.5em;
+    font-weight: bold;
+}
+
+.package-card h2 {
+    font-size: 1.3em;
+    font-weight: bold;
+}
+
+.package-card h3 {
+    font-size: 1.15em;
+    font-weight: bold;
+}
+
+.package-card h4 {
+    font-size: 1em;
+    font-weight: bold;
+}
+
+.main-container {
+    margin: 0 auto; /* Centers the container */
+    max-width: 700px; /* Sets a maximum width */
+    padding: 10px; /* Adds some spacing */
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif; /* Sets the font family */
+    font-size: 14px; /* Sets the default font size */
+}
+
+.package-card-header {
+    display: flex; /* Displays the elements in a row */
+    justify-content: space-between; /* Aligns the elements to the left and right */
+    padding: 0 10px; /* Adds some spacing */
+    border-bottom: 1px solid #ff6f00; /* Adds a bottom border */
+}
+
+.package-card-header code {
+    background-color: #e4e4e4; /* Adds a white background color */
+    padding: 2px 5px; /* Adds some spacing */
+}
+
+.package-card img {
+    width: 80%;
+    padding: 10px 10%;
+}

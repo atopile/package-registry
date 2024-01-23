@@ -11,12 +11,35 @@
       ]
     }
   ],
+  "redirects": [ {
+    "source": "/firebase/**",
+    "destination": "https://www.firebase.com",
+    "type": 302
+  } ],
+
   "hosting": {
-    "public": "public",
+    "public": "dist",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ]
+  },
+
+  "emulators": {
+    "auth": {
+      "port": 9099
+    },
+    "database": {
+      "port": 9040
+    },
+    "functions": {
+      "port": 5001
+    },
+    "ui": {
+      "enabled": true,
+      "port": 4000
+    },
+    "singleProjectMode": true
   }
 }
