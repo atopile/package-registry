@@ -237,7 +237,14 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+<<<<<<< HEAD
 
+=======
+## Service Account Credentials
+atopile-*.json
+
+.vscode/
+>>>>>>> mawildoer/gotta-return-data
 dist/
 node_modules/
 .idea/
