@@ -1,0 +1,23 @@
+{
+  "name": "package-registry",
+  "version": "1.0.0",
+  "description": "atopile's package registry web interface",
+  "repository": "git@github.com:atopile/package-registry-backend.git",
+  "author": "atopile",
+  "license": "Proprietary",
+  "source": "frontend/index.html",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "parcel": "^2.11.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dompurify": "^3.0.8",
+    "firebase": "^10.7.1",
+    "marked": "^11.1.1"
+  }
+}
