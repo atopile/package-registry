@@ -3,8 +3,8 @@ from firebase_admin import firestore, initialize_app
 from firebase_functions import firestore_fn, https_fn
 from pint import UnitRegistry
 
+
 ureg = UnitRegistry()  # If you have custom unit definitions
-app = initialize_app()
 
 IGNORED_PROPERTIES = ['designator_prefix', 'mpn']
 
