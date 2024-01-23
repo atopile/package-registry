@@ -4,8 +4,12 @@ ul {
 }
 
 .package-card {
-    border-bottom: 1px solid #000; /* Add a bottom border */
     padding: 10px; /* Optional: Adds some spacing */
+    border-bottom: 3px solid #ff6f00; /* Adds a bottom border */
+}
+
+.package-card:first-of-type {
+    border-top: 3px solid #ff6f00; /* Adds a top border to the first element */
 }
 
 .package-card:hover {
@@ -46,8 +50,8 @@ body {
 .package-card-header {
     display: flex; /* Displays the elements in a row */
     justify-content: space-between; /* Aligns the elements to the left and right */
-    border-bottom: 3px solid #ff6f00; /* Adds a bottom border */
     padding: 0 10px; /* Adds some spacing */
+    border-bottom: 1px solid #ff6f00; /* Adds a bottom border */
 }
 
 .package-card-header code {
