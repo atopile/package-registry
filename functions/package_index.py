@@ -1,19 +1,23 @@
 # The Cloud Functions for Firebase SDK to create Cloud Functions and set up triggers.
 import logging
 import re
-from typing import Any
 
 import google.cloud.firestore
 import requests
 
 # The Firebase Admin SDK to access Cloud Firestore.
 from firebase_admin import firestore
-from firebase_functions import https_fn
+from firebase_functions import https_fn, options
 
 log = logging.getLogger(__name__)
 
 
-@https_fn.on_request()
+@https_fn.on_request(
+    cors=options.CorsOptions(
+        cors_origins=["*"],
+        cors_methods=["get", "post"],
+    )
+)
 def get_package(req: https_fn.Request) -> https_fn.Response:
     # Parse the JSON request
     db: google.cloud.firestore.Client = firestore.client()
@@ -32,7 +36,12 @@ def get_package(req: https_fn.Request) -> https_fn.Response:
     return {"data": doc.to_dict()}
 
 
-@https_fn.on_request()
+@https_fn.on_request(
+    cors=options.CorsOptions(
+        cors_origins=["*"],
+        cors_methods=["get", "post"],
+    )
+)
 def list_packages(req: https_fn.Request) -> https_fn.Response:
     """
     List all the packages in the database.
@@ -43,7 +52,12 @@ def list_packages(req: https_fn.Request) -> https_fn.Response:
     return {"data": [doc.to_dict() for doc in docs]}
 
 
-@https_fn.on_request()
+@https_fn.on_request(
+    cors=options.CorsOptions(
+        cors_origins=["*"],
+        cors_methods=["get", "post"],
+    )
+)
 def add_package(req: https_fn.Request) -> https_fn.Response:
     # Parse the JSON request
     req_json: dict = req.get_json()["data"]
