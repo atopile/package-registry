@@ -237,5 +237,26 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 
+## Service Account Credentials
 atopile-*.json
+
 .vscode/
+dist/
+node_modules/
+.idea/
+.DS_Store
+package-lock.json
+_site/
+.now
+.parcel-cache
+
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
+## Chrome Dev Tools
+localhost:*/
+
