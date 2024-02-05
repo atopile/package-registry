@@ -70,8 +70,8 @@ def query_components(firestore_client, component_type, physical_filters=None, pr
     # Apply physical filters
     if physical_filters:
         components = [comp for comp in components if all(
-            physical_filters[prop][0] <= comp.get(prop, {}).get('max_val', float('inf')) and
-            physical_filters[prop][1] >= comp.get(prop, {}).get('min_val', 0)
+            comp.get(prop, {}).get('min_val', float('inf')) >= physical_filters[prop][0] and
+            comp.get(prop, {}).get('max_val', float('inf')) <= physical_filters[prop][1]
             for prop in physical_filters
         )]
 
