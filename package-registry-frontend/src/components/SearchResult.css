@@ -4,32 +4,30 @@
     padding: 20px;
     border: 1px solid #ddd; /* Example border */
     margin-bottom: 10px; /* Space between search results */
+    height: 200px; /* Set a fixed height */
+    overflow: hidden; /* Hide overflow content */
   }
-  
+
   .search-result-image-container {
     flex: 0 0 auto; /* Do not grow or shrink */
   }
-  
+
   .search-result-image {
     width: 200px;
     height: 200px;
     object-fit: cover;
   }
-  
+
   .search-result-info {
     flex: 1; /* Take up remaining space */
     padding-left: 20px; /* Space between image and text */
   }
-  
+
   .search-result-title {
     margin: 0 0 10px 0; /* Space below the title */
     /* Additional styling for the title */
   }
-  
-  .search-result-blurb {
-    /* Additional styling for the blurb */
-  }
-  
+
   .search-result-right {
     flex: 0 0 auto; /* Do not grow or shrink */
     display: flex;
@@ -37,11 +35,39 @@
     align-items: flex-end; /* Aligns items to the right */
     padding-left: 20px; /* Space between middle and right columns */
   }
-  
-  .search-result-extras {
-    /* Style for your stars, contributors, etc. */
+
+  .fa-icon {
+    font-size: 1em; /* Example size */
   }
-  
+
+  .copy-install-command {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adjust based on your design */
+  }
+
+  .install-command {
+    background-color: #eee; /* Example background color */
+    padding: 5px 10px;
+    border-radius: 4px; /* Adjust based on your design */
+    font-family: monospace;
+  }
+
   .search-result-button {
-    /* Reuse the button styles from previous examples */
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    background-color: #007bff; /* Example button color */
+    color: white;
+    border-radius: 4px;
+  }
+
+  .search-result-blurb.is-overflowing::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 50px; /* Height of the fade effect */
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(245, 245, 245, 1));
   }

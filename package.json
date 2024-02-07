@@ -11,6 +11,8 @@
     "build": "parcel build"
   },
   "dependencies": {
+    "@fortawesome/free-solid-svg-icons": "^6.5.1",
+    "@fortawesome/react-fontawesome": "^0.2.0",
     "@parcel/watcher": "^2.4.0",
     "cors": "^2.8.5",
     "dompurify": "^3.0.8",
@@ -19,6 +21,7 @@
     "marked": "^11.1.1",
     "million": "^3.0.2",
     "parcel": "^2.11.0",
-    "process": "^0.11.10"
+    "process": "^0.11.10",
+    "react-router-dom": "^6.22.0"
   }
 }
