@@ -24,7 +24,13 @@ function SearchResultsContainer() {
           key={pkg.id}
           title={pkg.title}
           images={pkg.images}
-        //   description={pkg.description}
+          name={pkg.name}
+          price={pkg.price}
+          blurb={pkg.blurb}
+          contributors={pkg.contributors}
+          url={pkg.repo_url}
+          tags={pkg.tags}
+          stars={pkg.stars}
         />
       ))}
     </div>

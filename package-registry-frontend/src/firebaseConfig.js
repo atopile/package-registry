@@ -3,6 +3,7 @@ import { initializeApp } from "firebase/app";
 import { getFunctions, connectFunctionsEmulator } from 'firebase/functions';
 import { getDatabase, connectDatabaseEmulator } from 'firebase/database';
 import { getStorage } from 'firebase/storage';
+import { getFirestore } from "firebase/firestore";
 
 
 // Your web app's Firebase configuration
@@ -22,6 +23,9 @@ const app = initializeApp(firebaseConfig);
 const database = getDatabase(app);
 const functions = getFunctions(app);
 const storage = getStorage(app);
+const db = getFirestore(app);
+
+export { db };
 
 // Connect to Firebase emulators in development environment
 if (process.env.NODE_ENV === 'development') {

@@ -1,77 +1,47 @@
-/* src/components/SearchResult.css */
-
 .search-result {
     display: flex;
-    align-items: center;
-    margin-bottom: 20px;
-    background: #fff;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    padding: 15px;
-    border-radius: 8px;
+    align-items: flex-start; /* Aligns items to the top */
+    padding: 20px;
+    border: 1px solid #ddd; /* Example border */
+    margin-bottom: 10px; /* Space between search results */
   }
-
+  
+  .search-result-image-container {
+    flex: 0 0 auto; /* Do not grow or shrink */
+  }
+  
   .search-result-image {
-    width: 200px; /* Adjust size as needed */
-    height: auto;
-    margin-right: 15px;
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
   }
-
+  
   .search-result-info {
-    flex-grow: 1;
+    flex: 1; /* Take up remaining space */
+    padding-left: 20px; /* Space between image and text */
   }
-
+  
   .search-result-title {
-    margin: 0;
-    color: #333;
+    margin: 0 0 10px 0; /* Space below the title */
+    /* Additional styling for the title */
   }
-
-  .search-result-cost {
-    font-weight: bold;
-    color: #666;
-  }
-
+  
   .search-result-blurb {
-    color: #666;
+    /* Additional styling for the blurb */
   }
-
-  .search-result-metrics {
-    margin: 10px 0;
-  }
-
-  .metric {
+  
+  .search-result-right {
+    flex: 0 0 auto; /* Do not grow or shrink */
     display: flex;
-    align-items: center;
-    margin-bottom: 5px;
+    flex-direction: column;
+    align-items: flex-end; /* Aligns items to the right */
+    padding-left: 20px; /* Space between middle and right columns */
   }
-
-  .metric-label {
-    margin-right: 10px;
-    font-size: 0.8rem;
+  
+  .search-result-extras {
+    /* Style for your stars, contributors, etc. */
   }
-
-  .metric-bar {
-    height: 10px;
-    background-color: #ddd;
-    width: 100%; /* Placeholder width */
-  }
-
-  .metric .usage .metric-bar {
-    background-color: #4caf50; /* Usage color */
-  }
-
-  .metric .quality .metric-bar {
-    background-color: #2196f3; /* Quality color */
-  }
-
-  .search-result-clone-btn {
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-
-  .search-result-clone-btn:hover {
-    background-color: #0056b3;
+  
+  .search-result-button {
+    /* Reuse the button styles from previous examples */
   }

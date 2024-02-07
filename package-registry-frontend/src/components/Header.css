@@ -1,14 +1,35 @@
-/* src/components/Header.css */
-
-.App-header {
-    background-color: #282c34;
-    padding: 10px 20px; /* Adjust padding as needed */
+.header {
     display: flex;
-    align-items: center; /* Aligns items vertically */
-    justify-content: start; /* Aligns items to the start of the container */
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: #454545; /* Example background color */
   }
-  
-  .App-logo {
-    height: 50px; /* Adjust size as needed */
-    margin-right: 20px; /* Adds some space after the logo */
+
+  .header-logo {
+    height: 50px; /* Adjust based on your logo's size */
+  }
+
+  .package-submit-form {
+    display: flex;
+    align-items: center;
+  }
+
+  .package-url-input {
+    margin-right: 10px;
+    padding: 5px;
+  }
+
+  .submit-btn, .search-btn {
+    padding: 10px 15px;
+    background-color: #007bff; /* Example blue color */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+  }
+
+  .submit-btn:hover, .search-btn:hover {
+    background-color: #0056b3; /* Darker blue on hover */
   }
