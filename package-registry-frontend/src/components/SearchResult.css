@@ -1,0 +1,77 @@
+/* src/components/SearchResult.css */
+
+.search-result {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    background: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    padding: 15px;
+    border-radius: 8px;
+  }
+
+  .search-result-image {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+    margin-right: 15px;
+  }
+
+  .search-result-info {
+    flex-grow: 1;
+  }
+
+  .search-result-title {
+    margin: 0;
+    color: #333;
+  }
+
+  .search-result-cost {
+    font-weight: bold;
+    color: #666;
+  }
+
+  .search-result-blurb {
+    color: #666;
+  }
+
+  .search-result-metrics {
+    margin: 10px 0;
+  }
+
+  .metric {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+  }
+
+  .metric-label {
+    margin-right: 10px;
+    font-size: 0.8rem;
+  }
+
+  .metric-bar {
+    height: 10px;
+    background-color: #ddd;
+    width: 100%; /* Placeholder width */
+  }
+
+  .metric .usage .metric-bar {
+    background-color: #4caf50; /* Usage color */
+  }
+
+  .metric .quality .metric-bar {
+    background-color: #2196f3; /* Quality color */
+  }
+
+  .search-result-clone-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .search-result-clone-btn:hover {
+    background-color: #0056b3;
+  }

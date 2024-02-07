@@ -1,0 +1,14 @@
+/* src/components/Header.css */
+
+.App-header {
+    background-color: #282c34;
+    padding: 10px 20px; /* Adjust padding as needed */
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    justify-content: start; /* Aligns items to the start of the container */
+  }
+  
+  .App-logo {
+    height: 50px; /* Adjust size as needed */
+    margin-right: 20px; /* Adds some space after the logo */
+  }
