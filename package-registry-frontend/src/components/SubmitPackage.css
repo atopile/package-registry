@@ -1,29 +1,41 @@
-
 .submit-package {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-}
-.submit-package-form {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  width: 50%;
-  max-width: 500px;
-}
-.submit-package-form input,
-.submit-package-form textarea,
-.submit-package-form button {
-  padding: 10px;
-  border-radius: 5px;
-  border: 1px solid #ccc;
-}
-.submit-package-form button {
-  background-color: #007bff;
-  color: white;
-  cursor: pointer;
-}
-.submit-package-form button:hover {
-  background-color: #0056b3;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .heading {
+    text-align: center;
+    background-color: transparent;
+  }
+
+  .submit-package-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Adjust gap for spacing between inputs */
+    width: 100%;
+    max-width: 500px; /* Adjust max-width as needed */
+    textarea { height: 100px; }
+  }
+
+  input, textarea {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+
+  .submit-btn {
+    background-color: #007bff; /* Example color */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .submit-btn:hover {
+    background-color: #0056b3; /* Darker shade for hover effect */
+  }

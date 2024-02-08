@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { db } from '../firebaseConfig';
-import { collection, addDoc } from 'firebase/firestore';
+import { functions } from '../firebaseConfig'; // Import Firebase functions
+import { httpsCallable } from 'firebase/functions';
 import './SubmitPackage.css';
 
 const SubmitPackage = () => {
@@ -20,23 +20,33 @@ const SubmitPackage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('Submitting package with data:', formData); // Added for debugging
     try {
-      const submissionsRef = collection(db, 'packageSubmissions');
-      await addDoc(submissionsRef, {
-        ...formData,
-        submittedAt: new Date(),
-      });
-      alert('Package submitted successfully.');
-      setFormData({ url: '', email: '', description: '' }); // Reset form
+      const submitPackage = httpsCallable(functions, 'submit_package');
+      // Wrap formData in a 'data' object to match expected request format
+      const result = await submitPackage(formData);
+      // console.log('Result after submission:', result); // Added for debugging
+      if (result.data.message === "Package submitted successfully") {
+        // Redirect using window.location for navigation
+        window.location.href = '/thanks-for-submitting';
+      } else {
+        // Check for errors in the result.data.error if the message is not present
+        const errorMessage = result.data.error ? result.data.error : 'Submission failed. Please try again.';
+        throw new Error(errorMessage);
+      }
+      setFormData({ url: '', email: '', description: '' });
     } catch (error) {
       console.error('Error submitting package:', error);
-      alert('Submission failed. Please try again.');
+      alert(error.message);
     }
   };
 
   return (
-    
     <div className="submit-package">
+      <div className="heading">
+        <h1>Submit Your Package</h1>
+      </div>
+        <p>We will review your package within 24 hours and it will be available upon approval.</p>
       <form onSubmit={handleSubmit} className="submit-package-form">
         <input
           type="text"
@@ -58,7 +68,7 @@ const SubmitPackage = () => {
           name="description"
           value={formData.description}
           onChange={handleChange}
-          placeholder="Package Description"
+          placeholder="What does your package do? Why is it awesome?"
           required
         />
         <button type="submit" className="submit-btn">Submit</button>

@@ -3,6 +3,7 @@ import { ref, getDownloadURL } from 'firebase/storage';
 import { storage } from '../firebaseConfig';
 
 const PackageImage = ({ images, size }) => {
+    
   const [imageUrl, setImageUrl] = useState('');
 
   useEffect(() => {
