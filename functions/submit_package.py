@@ -7,6 +7,23 @@ firestore_client = firestore.client()
 
 @https_fn.on_request()
 def submit_package(request, firestore_client=firestore_client):
+    # Set CORS headers for the preflight request
+    if request.method == 'OPTIONS':
+        # Allows GET requests from any origin with the Content-Type header
+        # and caches preflight response for an 3600s
+        headers = {
+            'Access-Control-Allow-Origin': '*',
+            'Access-Control-Allow-Methods': 'POST',
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Max-Age': '3600'
+        }
+        return https_fn.Response(status=204, headers=headers)
+
+    # Set CORS headers for the main request
+    headers = {
+        'Access-Control-Allow-Origin': '*'
+    }
+
     try:
         req_json = request.get_json()
         print("Received package submission request with data:", req_json)
@@ -29,6 +46,7 @@ def submit_package(request, firestore_client=firestore_client):
             json.dumps({"data": {"message": "Package submitted successfully."}}),
             status=200,
             content_type='application/json',
+            headers=headers
         )
 
     except firestore.ClientError as e:
@@ -37,6 +55,7 @@ def submit_package(request, firestore_client=firestore_client):
             json.dumps({"error": "There was an issue with Firestore. Please try again later."}),
             status=500,
             content_type='application/json',
+            headers=headers
         )
     except json.JSONDecodeError as e:
         print(f"JSON decode error: {str(e)}")
@@ -44,6 +63,7 @@ def submit_package(request, firestore_client=firestore_client):
             json.dumps({"error": "Invalid JSON format. Please check your request payload."}),
             status=400,
             content_type='application/json',
+            headers=headers
         )
     except Exception as e:
         print(f"Unexpected error: {str(e)}")
@@ -51,4 +71,6 @@ def submit_package(request, firestore_client=firestore_client):
             json.dumps({"error": "An unexpected error occurred. Please try again later."}),
             status=500,
             content_type='application/json',
+            headers=headers
         )
+

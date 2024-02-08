@@ -17,14 +17,13 @@ const SubmitPackage = () => {
       [name]: value,
     }));
   };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     console.log('Submitting package with data:', formData); // Added for debugging
     try {
       const submitPackage = httpsCallable(functions, 'submit_package');
-      // Wrap formData in a 'data' object to match expected request format
-      const result = await submitPackage(formData);
+      // Wrap formData in a 'data' object to match expected request format and include headers for CORS
+      const result = await submitPackage({ data: formData, headers: { 'Access-Control-Allow-Origin': '*' } });
       // console.log('Result after submission:', result); // Added for debugging
       if (result.data.message === "Package submitted successfully") {
         // Redirect using window.location for navigation
