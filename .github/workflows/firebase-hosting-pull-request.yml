@@ -7,12 +7,15 @@ jobs:
   build_and_preview:
     if: '${{ github.event.pull_request.head.repo.full_name == github.repository }}'
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./package-registry-frontend
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 21
-      - run: npm install
+      - run: npm ci
       - run: npm run build
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:

@@ -18,7 +18,7 @@
   } ],
 
   "hosting": {
-    "public": "dist",
+    "public": "package-registry-frontend/build",
     "ignore": [
       "firebase.json",
       "**/.*",

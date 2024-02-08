@@ -37,3 +37,5 @@ There are two ways I've figured out how to get around CORS for the sake of devel
     )
 )
 ```
+
+firebase emulators:start

@@ -1,0 +1,104 @@
+/* App-wide styles */
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  overflow: auto;
+  position: relative;
+}
+
+
+a {
+  color: #4b4b4b;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Header styles */
+header {
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  padding: 1rem;
+}
+
+/* Search bar styles */
+.search-bar {
+  position: relative;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+.search-bar input[type="text"] {
+  width: 100%;
+  padding: 1rem;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.search-bar button {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  border: none;
+  background-color: #007bff;
+  color: white;
+  padding: 1rem;
+  border-radius: 0 4px 4px 0;
+  cursor: pointer;
+}
+
+/* Filter sidebar styles */
+aside {
+  background-color: #fff;
+  border-right: 1px solid #eee;
+  padding: 1rem;
+}
+
+.filter-container h2 {
+  margin-top: 0;
+}
+
+/* Card styles */
+.card {
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  border-radius: 4px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  transition: box-shadow 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Footer styles */
+footer {
+  background-color: #282c34;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+}
+
+aside {
+  flex: 1; /* Takes up 1/5 of the space */
+  max-width: 20%; /* 1/5 of the screen width */
+  margin-right: 20px;
+}
+
+main {
+  flex: 4; /* Takes up the remaining space */
+}
