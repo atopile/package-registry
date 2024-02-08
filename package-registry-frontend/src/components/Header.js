@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import logo from '../assets/logo.png'; // Update the path to your logo
 import './Header.css'; // Ensure your CSS is properly organized for layout
 import { Link } from 'react-router-dom';

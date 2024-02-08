@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './SearchResult.css';
 import { Link } from 'react-router-dom';
@@ -7,28 +7,7 @@ import PackageImage from './PackageImage';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 
 
-function checkForOverflow() {
-    const blurbs = document.querySelectorAll('.search-result-blurb');
-
-    blurbs.forEach(blurb => {
-      if (blurb.scrollHeight > blurb.clientHeight) {
-        // Content is overflowing
-        blurb.classList.add('is-overflowing');
-      } else {
-        blurb.classList.remove('is-overflowing');
-      }
-    });
-  }
   const SearchResult = ({ pkg }) => {
-
-  const copyToClipboard = () => {
-    const installCommand = `ato install ${pkg.name}`;
-    navigator.clipboard.writeText(installCommand).then(() => {
-      console.log('Install command copied to clipboard!');
-    }, (err) => {
-      console.error('Could not copy text: ', err);
-    });
-  };
 
   return (
     <div className="search-result">
@@ -58,7 +37,7 @@ function checkForOverflow() {
             {pkg.stars}
             </div>
             <div className="search-result-contributors">
-            👤 {pkg.contributors.length} Contributors
+            <span role="img" aria-label="contributors">👤</span> {pkg.contributors.length} Contributors
             </div>
             <a href={pkg.repo_url} target="_blank" rel="noopener noreferrer" className="search-result-repo-link">
             View on GitHub
