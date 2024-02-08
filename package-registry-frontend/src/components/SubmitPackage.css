@@ -1,0 +1,29 @@
+
+.submit-package {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.submit-package-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 50%;
+  max-width: 500px;
+}
+.submit-package-form input,
+.submit-package-form textarea,
+.submit-package-form button {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+.submit-package-form button {
+  background-color: #007bff;
+  color: white;
+  cursor: pointer;
+}
+.submit-package-form button:hover {
+  background-color: #0056b3;
+}
