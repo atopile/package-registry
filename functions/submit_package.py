@@ -1,7 +1,7 @@
 import json
 from firebase_admin import firestore, initialize_app
 from firebase_functions import firestore_fn, https_fn
-
+import requests  # Make sure requests is installed
 
 firestore_client = firestore.client()
 
@@ -9,8 +9,6 @@ firestore_client = firestore.client()
 def submit_package(request, firestore_client=firestore_client):
     # Set CORS headers for the preflight request
     if request.method == 'OPTIONS':
-        # Allows GET requests from any origin with the Content-Type header
-        # and caches preflight response for an 3600s
         headers = {
             'Access-Control-Allow-Origin': '*',
             'Access-Control-Allow-Methods': 'POST',
@@ -31,17 +29,27 @@ def submit_package(request, firestore_client=firestore_client):
         # Extracting the 'data' object from the request JSON
         data = req_json.get("data", {})
 
-        print("data: ", data)
+        print("data: ", req_json)
 
         package_data = {
-            "url": data.get("url"),
-            "email": data.get("email"),
-            "description": data.get("description"),
+            "url": req_json.get("url"),
+            "email": req_json.get("email"),
+            "description": req_json.get("description"),
             "submittedAt": firestore.SERVER_TIMESTAMP
         }
 
         print("package_data: ", package_data)
         firestore_client.collection('packageSubmissions').add(package_data)
+
+        # Send notification to Discord
+        discord_webhook_url = 'https://discord.com/api/webhooks/1205617728921010237/F7mmOwdn6TeWaZuM963uqQx2FoHccRMcB0eBSGIb5uhT-2GB4_Ch6Z5zWt-dEDlKXeDu'
+        discord_message = {
+            "content": f"New package submission: {req_json.get('description')} from {req_json.get('email')}"
+        }
+        response = requests.post(discord_webhook_url, json=discord_message)
+        if response.status_code != 204:
+            print(f"Failed to send message to Discord, status code: {response.status_code}")
+
         return https_fn.Response(
             json.dumps({"data": {"message": "Package submitted successfully."}}),
             status=200,
@@ -57,6 +65,7 @@ def submit_package(request, firestore_client=firestore_client):
             content_type='application/json',
             headers=headers
         )
+
     except json.JSONDecodeError as e:
         print(f"JSON decode error: {str(e)}")
         return https_fn.Response(
@@ -73,4 +82,3 @@ def submit_package(request, firestore_client=firestore_client):
             content_type='application/json',
             headers=headers
         )
-

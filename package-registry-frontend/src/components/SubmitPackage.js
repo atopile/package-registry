@@ -21,6 +21,8 @@ const SubmitPackage = () => {
     e.preventDefault();
     console.log('Submitting package with data:', formData); // Added for debugging
     try {
+
+      data = formData.get('data')
       const submitPackage = httpsCallable(functions, 'submit_package');
       // Wrap formData in a 'data' object to match expected request format and include headers for CORS
       const result = await submitPackage({ data: formData, headers: { 'Access-Control-Allow-Origin': '*' } });
