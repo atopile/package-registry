@@ -51,7 +51,7 @@ def submit_package(request, firestore_client=firestore_client):
             print(f"Failed to send message to Discord, status code: {response.status_code}")
 
         return https_fn.Response(
-            json.dumps({"data": {"message": "Package submitted successfully."}}),
+            json.dumps({"data": {"message": "Package submitted successfully"}}),
             status=200,
             content_type='application/json',
             headers=headers
