@@ -10,7 +10,7 @@ const Header = () => {
       <Link to="/">
         <img src={logo} alt="Logo" className="header-logo" />
       </Link>
-      <Link to="submit-package" className="submit-btn">Submit Package</Link>
+      {/* <Link to="submit-package" className="submit-btn">Submit Package</Link> */}
     </header>
   );
 };
