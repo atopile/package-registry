@@ -29,7 +29,7 @@ def submit_package(request, firestore_client=firestore_client):
         print("Received package submission request with data:", req_json)
 
         # Extracting the 'data' object from the request JSON
-        data = req_json.get("data", {})
+        data = req_json.get("data", {}).get("data", {})
 
         print("data: ", data)
 
