@@ -31,6 +31,7 @@ def submit_package(request, firestore_client=firestore_client):
         # Extracting the 'data' object from the request JSON
         # data = req_json.get("data", {}).get("data", {})
         data = firestore_fn.extract_data(request)
+        data = data.get("data", {})
 
         print("data: ", data)
 
